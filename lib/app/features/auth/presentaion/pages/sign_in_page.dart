@@ -1,49 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../../../core/routes/route_path.dart';
-import '../providers/auth_providers.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/routes/route_path.dart';
+import '../providers/auth_providers.dart';
+
 class SignInPage extends ConsumerWidget {
-  const SignInPage({super.key});
+  SignInPage({super.key});
+
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final authState = ref.watch(authProvider);
-
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-
     return Scaffold(
-      appBar: AppBar(title: const Text("Sign In")),
       body: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: EdgeInsets.all(16.w),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextField(controller: emailController, decoration: const InputDecoration(labelText: "Email")),
-            TextField(controller: passwordController, obscureText: true, decoration: const InputDecoration(labelText: "Password")),
-            const SizedBox(height: 20),
-            authState.loading
-                ? const CircularProgressIndicator()
-                : ElevatedButton(
+            Text("Sign In", style: TextStyle(fontSize: 24.sp)),
+            SizedBox(height: 20.h),
+            TextField(
+              controller: _emailController,
+              decoration: InputDecoration(labelText: "Email"),
+            ),
+            SizedBox(height: 10.h),
+            TextField(
+              controller: _passwordController,
+              obscureText: true,
+              decoration: InputDecoration(labelText: "Password"),
+            ),
+            SizedBox(height: 20.h),
+            ElevatedButton(
               onPressed: () async {
-                await ref.read(authProvider.notifier).login(
-                  emailController.text,
-                  passwordController.text,
+                final signIn = ref.read(signInProvider);
+                final user = await signIn(
+                  _emailController.text,
+                  _passwordController.text,
                 );
-
-                if (ref.read(authProvider).user != null) {
-                  context.push(RoutePath.home.addBasePath);
-                }
+                ref.read(authStateProvider.notifier).state = user;
+                // context.push(RoutePath.home.addBasePath);
               },
-              child: const Text("Login"),
+              child: Text("Sign In"),
             ),
             TextButton(
-              onPressed: () => context.push(RoutePath.signUp.addBasePath),
-              child: const Text("Don't have an account? Sign Up"),
+              onPressed: () =>  context.push(RoutePath.signUp.addBasePath),
+              child: Text("Don't have an account? Sign Up"),
             ),
-            if (authState.error != null)
-              Text(authState.error!, style: const TextStyle(color: Colors.red)),
           ],
         ),
       ),

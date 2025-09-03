@@ -2,4 +2,5 @@
 
 * Riverpod ব্যবহার করলে সবার উপরে ProviderScope দিতে হয়।
 * যদি ProviderScope না দাও, তাহলে riverpod জানবেই না কোন state কোথায় store হচ্ছে।
-* 
+* ConsumerWidget ছাড়া তুমি ref পাবা না → তাই provider এর state access করতে পারবে না।
+* এক কথায়: “ConsumerWidget হলো Riverpod এর interface যা দিয়ে provider এর state UI তে দেখানো যায়।”

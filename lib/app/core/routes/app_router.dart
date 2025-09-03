@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../features/auth/presentaion/pages/sign_in_page.dart';
@@ -13,12 +12,12 @@ class AppRouter {
       GoRoute(
         name: RoutePath.signIn,
         path: RoutePath.signIn.addBasePath,
-        builder: (context, state) => const SignInPage(),
+        builder: (context, state) =>  SignInPage(),
       ),
       GoRoute(
         name: RoutePath.signUp,
         path: RoutePath.signUp.addBasePath,
-        builder: (context, state) => const SignUpPage(),
+        builder: (context, state) =>  SignUpPage(),
       ),
 
     ],

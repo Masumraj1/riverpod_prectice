@@ -1,49 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import '../../domain/entities/user.dart';
-import '../../domain/usecases/sign_in.dart';
 import '../../data/repositories/auth_repository_impl.dart';
+import '../../domain/usecases/sign_in.dart';
+import '../../domain/usecases/sign_up.dart';
+import '../../domain/entities/user.dart';
 
-// Repository Provider
-final authRepositoryProvider = Provider<AuthRepositoryImpl>((ref) {
-  return AuthRepositoryImpl();
+final authRepositoryProvider = Provider((ref) => AuthRepositoryImpl());
+
+final signInProvider = Provider((ref) {
+  final repo = ref.watch(authRepositoryProvider);
+  return SignIn(repo);
 });
 
-// UseCase Provider
-final signInUseCaseProvider = Provider<SignIn>((ref) {
-  return SignIn(ref.read(authRepositoryProvider));
+final signUpProvider = Provider((ref) {
+  final repo = ref.watch(authRepositoryProvider);
+  return SignUp(repo);
 });
 
-// Auth State
-class AuthState {
-  final bool loading;
-  final User? user;
-  final String? error;
-
-  AuthState({this.loading = false, this.user, this.error});
-}
-
-// StateNotifier
-class AuthNotifier extends StateNotifier<AuthState> {
-  final SignIn signIn;
-
-  AuthNotifier(this.signIn) : super(AuthState());
-
-  Future<void> login(String email, String password) async {
-    state = AuthState(loading: true);
-    try {
-      final user = await signIn(SignInParams(email, password));
-      state = AuthState(user: user);
-    } catch (e) {
-      state = AuthState(error: e.toString());
-    }
-  }
-
-  void logout() {
-    state = AuthState();
-  }
-}
-
-// Provider
-final authProvider = StateNotifierProvider<AuthNotifier, AuthState>((ref) {
-  return AuthNotifier(ref.read(signInUseCaseProvider));
-});
+final authStateProvider = StateProvider<User?>((ref) => null);
