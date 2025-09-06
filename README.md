@@ -4,6 +4,20 @@
 #### ProviderScope না দিলে Riverpod একদম কাজ করবে না।
 #### কারণ ProviderScope হচ্ছে একটা গ্লোবাল container যেখানে সব provider গুলো store হয়।
 #### সাধারনত main.dart এ wrap করে দিতে হয়:
+
+# Provider Types শিখা
+#### StateProvider → simple value/state store
+#### FutureProvider → async data load (যেমন API call)
+#### StreamProvider → live data stream
+#### StateNotifierProvider → complex state management (counter, list, model)
+
+# ref.watch, ref.read, ref.listen
+#### ref.watch() → UI কে reactive করে (value change হলে rebuild হবে)
+#### ref.read() → শুধু value নেবে, rebuild করবে না (onTap, onPressed এ ভালো use হয়)
+#### ref.listen() → value change observe করবে (SnackBar, Navigation, Logging এর জন্য)
+#### NotifierProvider (v2) → Riverpod v2 তে নতুন system (OOP feel দেয়)
+
+
 * ConsumerWidget ছাড়া তুমি ref পাবা না → তাই provider এর state access করতে পারবে না।
 * এক কথায়: “ConsumerWidget হলো Riverpod এর interface যা দিয়ে provider এর state UI তে দেখানো যায়।”
 ### StatelessWidget + Consumer ====যখন performance গুরুত্বপূর্ণ, বড় widget tree আছে, শুধুমাত্র ছোট অংশ rebuild করতে হবে
