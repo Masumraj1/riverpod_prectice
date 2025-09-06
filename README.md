@@ -17,7 +17,11 @@
 #### ref.listen() → value change observe করবে (SnackBar, Navigation, Logging এর জন্য)
 #### NotifierProvider (v2) → Riverpod v2 তে নতুন system (OOP feel দেয়)
 
+### Riverpod নিজে route system দেয় না ❌ — কারণ Riverpod মূলত state management library।
 
+#### Copywith method
+* select() → নির্দিষ্ট property watch করো, অপ্রয়োজনীয় rebuild কমবে।
+* loose coupling and tight coupling
 * ConsumerWidget ছাড়া তুমি ref পাবা না → তাই provider এর state access করতে পারবে না।
 * এক কথায়: “ConsumerWidget হলো Riverpod এর interface যা দিয়ে provider এর state UI তে দেখানো যায়।”
 ### StatelessWidget + Consumer ====যখন performance গুরুত্বপূর্ণ, বড় widget tree আছে, শুধুমাত্র ছোট অংশ rebuild করতে হবে
