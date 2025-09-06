@@ -1,7 +1,9 @@
 # riverpod_prectice
 
-* Riverpod ব্যবহার করলে সবার উপরে ProviderScope দিতে হয়।
-* যদি ProviderScope না দাও, তাহলে riverpod জানবেই না কোন state কোথায় store হচ্ছে।
+# ProviderScope
+#### ProviderScope না দিলে Riverpod একদম কাজ করবে না।
+#### কারণ ProviderScope হচ্ছে একটা গ্লোবাল container যেখানে সব provider গুলো store হয়।
+#### সাধারনত main.dart এ wrap করে দিতে হয়:
 * ConsumerWidget ছাড়া তুমি ref পাবা না → তাই provider এর state access করতে পারবে না।
 * এক কথায়: “ConsumerWidget হলো Riverpod এর interface যা দিয়ে provider এর state UI তে দেখানো যায়।”
 ### StatelessWidget + Consumer ====যখন performance গুরুত্বপূর্ণ, বড় widget tree আছে, শুধুমাত্র ছোট অংশ rebuild করতে হবে
