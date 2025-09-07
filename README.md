@@ -21,6 +21,7 @@
 
 #### Copywith method
 * select() → নির্দিষ্ট property watch করো, অপ্রয়োজনীয় rebuild কমবে।
+* autoDispose
 * loose coupling and tight coupling
 * ConsumerWidget ছাড়া তুমি ref পাবা না → তাই provider এর state access করতে পারবে না।
 * এক কথায়: “ConsumerWidget হলো Riverpod এর interface যা দিয়ে provider এর state UI তে দেখানো যায়।”
