@@ -19,6 +19,13 @@
 
 ### Riverpod নিজে route system দেয় না ❌ — কারণ Riverpod মূলত state management library।
 
+Riverpod মূলত cache-এর মতোই state ধরে রাখে।
+তুমি যদি autoDispose ব্যবহার না করো, তাহলে provider-এর state memory তে থাকবে যতক্ষণ না:
+
+ProviderScope destroy হয়
+
+তুমি manually invalidate করো
+
 #### Copywith method
 * select() → নির্দিষ্ট property watch করো, অপ্রয়োজনীয় rebuild কমবে।
 * autoDispose
