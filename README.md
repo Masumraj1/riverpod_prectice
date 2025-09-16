@@ -37,3 +37,7 @@ ProviderScope destroy হয়
 * https://github.com/Uuttssaavv/flutter-clean-architecture-riverpod
 * https://dev.to/ssoad/flutter-riverpod-clean-architecture-the-ultimate-production-ready-template-for-scalable-apps-gdh
 * https://codewithandrea.com/articles/flutter-app-architecture-riverpod-introduction/
+
+* Providers?
+* ConsumerWidget
+* ConsumerStatefulWidget
